@@ -191,10 +191,10 @@ export default function App() {
   }, []);
 
   const { scrollY, scrollYProgress } = useScroll();
-  const headerBgOpacity = useTransform(scrollY, [0, 150], [0, 0.95]);
-  const headerBlur = useTransform(scrollY, [0, 150], [0, 30]);
+  const headerBgOpacity = useTransform(scrollY, [0, 150], [0, 0.1]);
+  const headerBlur = useTransform(scrollY, [0, 150], [0, 10]);
   const headerPadding = useTransform(scrollY, [0, 150], ["2.5rem", "1.25rem"]);
-  const headerBorder = useTransform(scrollY, [0, 150], ["rgba(224, 142, 157, 0)", "rgba(224, 142, 157, 0.15)"]);
+  const headerBorder = useTransform(scrollY, [0, 150], ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.05)"]);
 
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
@@ -222,17 +222,16 @@ export default function App() {
         style={{ scaleX: scrollYProgress }}
       />
 
-      {/* NAVIGATION */}
       <motion.header 
         style={{ 
-          backgroundColor: useTransform(headerBgOpacity, (o) => `rgba(253, 248, 248, ${o})`),
+          backgroundColor: useTransform(headerBgOpacity, (o) => `rgba(255, 255, 255, ${o})`),
           backdropFilter: useTransform(headerBlur, (b) => `blur(${b}px)`),
           paddingTop: headerPadding,
           paddingBottom: headerPadding,
           borderBottom: `1px solid`,
           borderBottomColor: headerBorder
         }}
-        className="fixed top-0 left-0 w-full z-50 transition-all duration-700 px-6 md:px-12 text-onyx"
+        className="fixed top-0 left-0 w-full z-50 transition-all duration-700 px-6 md:px-12 text-black"
       >
         <nav className="max-w-[1800px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4 group cursor-pointer">
@@ -297,7 +296,7 @@ export default function App() {
             </div>
             
             <button 
-              className="lg:hidden text-onyx p-2 hover:bg-silk/50 rounded-xl transition-colors" 
+              className="lg:hidden text-black p-2 hover:bg-silk/50 rounded-xl transition-colors" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -314,7 +313,7 @@ export default function App() {
         >
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none" />
           <button 
-            className="absolute top-8 right-8 text-onyx" 
+            className="absolute top-8 right-8 text-black" 
             onClick={() => setIsMenuOpen(false)}
           >
             <X className="w-8 h-8" />
@@ -330,7 +329,7 @@ export default function App() {
               key={item.id} 
               href={`#${item.id}`} 
               onClick={() => setIsMenuOpen(false)}
-              className="text-onyx text-3xl font-serif tracking-widest hover:text-champagne transition-colors"
+              className="text-black text-3xl font-serif tracking-widest hover:text-champagne transition-colors"
             >
               {item.label}
             </a>
