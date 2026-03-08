@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Montserrat", sans-serif;
+
+  --color-ivory: #FDF8F8;
+  --color-onyx: #2D1B33;
+  --color-champagne: #E08E9D;
+  --color-silk: #F3E8FF;
+  --color-rose-dust: #D4A5A5;
+  --color-gold-light: #FFD1DC;
+  --color-gold-dark: #7E60BF;
+
+  --shadow-luxury: 0 20px 50px rgba(45, 27, 51, 0.1);
+}
+
+@layer base {
+  body {
+    @apply bg-ivory text-onyx font-sans antialiased selection:bg-champagne selection:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight leading-tight text-onyx;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+.text-display {
+  font-size: clamp(3rem, 12vw, 10rem);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+}
+
+.label-micro {
+  @apply text-[9px] font-bold uppercase tracking-[0.5em] text-onyx/50;
+}
+
+.glass-dark {
+  @apply bg-white/80 backdrop-blur-xl border-b border-onyx/5;
+}
+
+.glass-light {
+  @apply bg-white/40 backdrop-blur-lg border border-white/30;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #E08E9D 0%, #FFD1DC 50%, #E08E9D 100%);
+}
+
+.text-gradient-gold {
+  background-image: linear-gradient(135deg, var(--color-champagne) 0%, var(--color-gold-light) 50%, var(--color-champagne) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  font-weight: 600;
+}
+
+@layer utilities {
+  .luxury-border {
+    border: 1px solid var(--color-onyx, #121212);
+    border-color: rgba(18, 18, 18, 0.05);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+  }
+  .luxury-border:hover {
+    border-color: rgba(197, 160, 89, 0.3);
+  }
+
+  .luxury-card {
+    @apply bg-white p-8 shadow-luxury rounded-2xl;
+    border: 1px solid rgba(18, 18, 18, 0.05);
+    transition: all 0.5s ease;
+  }
+  .luxury-card:hover {
+    border-color: rgba(197, 160, 89, 0.3);
+  }
+}
+
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  background: #E08E9D;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  transition: transform 0.15s ease-out;
+}
+
+.cursor-follower {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #E08E9D;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.3s ease-out;
+}
+
+.hover-scale {
+  @apply transition-transform duration-500 hover:scale-105;
+}
+
+.section-divider {
+  @apply w-px h-24 bg-gradient-to-b from-champagne to-transparent mx-auto my-12;
+}
+
+.reveal-mask {
+  clip-path: inset(0 100% 0 0);
+}
+
+.parallax-container {
+  overflow: hidden;
+}
+
+.parallax-element {
+  will-change: transform;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
